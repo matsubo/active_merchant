@@ -11,7 +11,18 @@ class WorldpayTest < Test::Unit::TestCase
 
     @amount = 100
     @credit_card = credit_card('4242424242424242')
-    @options = {:order_id => 1}
+    @options = {
+      :order_id => 1,
+      :session_shopper_ip_address => '127.0.0.1',
+      :session_id => 'session_id_abc',
+      :shopper_browser_accept_header => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+      :shopper_browser_user_agent_header => 'Mozilla/5.0 (X11; U; Linux i686; en-US;rv:1.9.0.10) Gecko/2009042523 Ubuntu/9.04 (jaunty) Firefox/3.0.10',
+      :shopper_email_address => 'example@example.com',
+      :shopper_browser_http_accept_language => 'dummy',
+      :shopper_browser_http_referer => 'dummy',
+      :shopper_browser_http_accept_language => 'dummy',
+    }
+    @subsequent_order_options = {:order_id => 1}
   end
 
   def test_successful_authorize

@@ -198,6 +198,19 @@ module ActiveMerchant #:nodoc:
             end
           end
         end
+
+
+        xml.tag! 'shopper' do
+          (xml.tag! 'shopperEmailAddress', options[:shopper_email_address]) if options[:shopper_email_address]
+          (xml.tag! 'authenticatedShopperID', options[:shopper_browser_authenticated_shopper_id]) if options[:shopper_browser_authenticated_shopper_id]
+          xml.tag! 'browser' do
+            (xml.tag! 'acceptHeader',    options[:shopper_browser_accept_header])           if options[:shopper_browser_accept_header]
+            (xml.tag! 'userAgentHeader', options[:shopper_browser_user_agent_header])       if options[:shopper_browser_user_agent_header]
+            (xml.tag! 'httpAcceptLanguage', options[:shopper_browser_http_accept_language]) if options[:shopper_browser_http_accept_language]
+            (xml.tag! 'httpReferer', options[:shopper_browser_http_referer])                if options[:shopper_browser_http_referer]
+          end
+          (xml.tag! 'session', 'shopperIPAddress' => options[:session_shopper_ip_address], 'id' => options[:session_id]) if options[:session_shopper_ip_address] && options[:session_id]
+        end
       end
 
       def add_address(xml, element, address)

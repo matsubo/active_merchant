@@ -9,7 +9,17 @@ class RemoteWorldpayTest < Test::Unit::TestCase
     @credit_card = credit_card('4111111111111111')
     @declined_card = credit_card('4111111111111111', :first_name => nil, :last_name => 'REFUSED')
 
-    @options = {:order_id => generate_unique_id}
+    @options = {
+      :order_id => generate_unique_id,
+      :session_shopper_ip_address => '127.0.0.1',
+      :session_id => 'session_id_abc',
+      :shopper_browser_accept_header => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+      :shopper_browser_user_agent_header => 'Mozilla/5.0 (X11; U; Linux i686; en-US;rv:1.9.0.10) Gecko/2009042523 Ubuntu/9.04 (jaunty) Firefox/3.0.10',
+      :shopper_email_address => 'example@example.com',
+      :shopper_browser_http_accept_language => 'dummy',
+      :shopper_browser_http_referer => 'dummy',
+      :shopper_browser_http_accept_language => 'dummy',
+    }
   end
 
   def test_successful_purchase
